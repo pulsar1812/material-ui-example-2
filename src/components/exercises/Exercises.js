@@ -30,6 +30,7 @@ const Exercises = ({
   muscles,
   category,
   exercise: {
+    id,
     title = 'Welcome!',
     description = 'Please select an exercise from the list on the left.'
   },
@@ -70,15 +71,17 @@ const Exercises = ({
     </Grid>
     <Grid item xs={12} sm={6}>
       <Paper className={classes.Paper}>
+        <Typography variant='h4'>{title}</Typography>
+
         {editMode ? (
-          <Form exercise={exercise} muscles={muscles} onSubmit={onEdit} />
+          <Form
+            key={id}
+            exercise={exercise}
+            muscles={muscles}
+            onSubmit={onEdit}
+          />
         ) : (
-          <Fragment>
-            <Typography variant='h4'>{title}</Typography>
-            <Typography variant='h5' style={{ marginTop: 20 }}>
-              {description}
-            </Typography>
-          </Fragment>
+          <Typography variant='h5'>{description}</Typography>
         )}
       </Paper>
     </Grid>
