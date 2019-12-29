@@ -15,11 +15,33 @@ import { Delete, Edit } from '@material-ui/icons';
 import Form from './Form';
 
 const styles = theme => ({
-  Paper: {
+  paper: {
     padding: 20,
-    marginTop: 5,
-    height: 400,
-    overflow: 'auto'
+    overflow: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      height: 'calc(100% - 10px)'
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '100%'
+    }
+  },
+  '@global': {
+    'html, body, #root': {
+      height: '100%'
+    }
+  },
+  container: {
+    [theme.breakpoints.up('sm')]: {
+      height: 'calc(100% - 64px - 48px)'
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: 'calc(100% - 56px - 48px)'
+    }
+  },
+  item: {
+    [theme.breakpoints.down('xs')]: {
+      height: '50%'
+    }
   }
 });
 
@@ -40,9 +62,9 @@ const Exercises = ({
   onSelectEdit,
   onEdit
 }) => (
-  <Grid container>
-    <Grid item xs={12} sm={6}>
-      <Paper className={classes.Paper}>
+  <Grid container className={classes.container}>
+    <Grid item className={classes.item} xs={12} sm={6}>
+      <Paper className={classes.paper}>
         {exercises.map(([group, exercises]) =>
           !category || category === group ? (
             <Fragment key={group}>
@@ -69,8 +91,8 @@ const Exercises = ({
         )}
       </Paper>
     </Grid>
-    <Grid item xs={12} sm={6}>
-      <Paper className={classes.Paper}>
+    <Grid item className={classes.item} xs={12} sm={6}>
+      <Paper className={classes.paper}>
         <Typography variant='h4'>{title}</Typography>
 
         {editMode ? (
